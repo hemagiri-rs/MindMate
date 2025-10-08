@@ -1,0 +1,56 @@
+<aside id="sidebar" class="sidebar" aria-label="Primary">
+  <div class="sidebar-header">
+    <div class="flex items-center gap-2">
+      <img src="./assets/logo.webp" alt="MindMate logo" class="sidebar-logo" />
+      <span class="text-sm font-semibold" aria-label="App name">MindMate</span>
+    </div>
+    <button id="sidebar-toggle" class="btn btn-secondary" aria-label="Close menu">
+      <i class="fas fa-times" aria-hidden="true"></i>
+      <span class="sr-only">Close</span>
+    </button>
+  </div>
+
+  <nav class="sidebar-nav" role="navigation">
+    <a href="/dashboard" class="nav-item" data-route="dashboard">
+      <i class="fas fa-home" aria-hidden="true"></i>
+      <span>Dashboard</span>
+    </a>
+    <a href="/notes" class="nav-item" data-route="notes">
+      <i class="fas fa-sticky-note" aria-hidden="true"></i>
+      <span>Notes</span>
+    </a>
+    <a href="/tasks" class="nav-item" data-route="tasks">
+      <i class="fas fa-tasks" aria-hidden="true"></i>
+      <span>Tasks</span>
+    </a>
+    <a href="/mood" class="nav-item" data-route="mood">
+      <i class="fas fa-heart" aria-hidden="true"></i>
+      <span>Mood</span>
+    </a>
+    <a href="/chatbot" class="nav-item" data-route="chatbot">
+      <i class="fas fa-robot" aria-hidden="true"></i>
+      <span>AI Assistant</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <div class="user-avatar" id="user-avatar">${userInitial}</div>
+      <div class="user-details">
+        <h4 id="user-name">${userName}</h4>
+        <p id="user-email">${userEmail}</p>
+      </div>
+    </div>
+    <button id="logout-btn" class="btn btn-secondary" aria-label="Log out">
+      <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+      <span>Logout</span>
+    </button>
+  </div>
+</aside>
+
+ Mobile overlay and menu button (used by Router.initMobileSidebar) 
+<div id="sidebar-overlay" class="sidebar-overlay" aria-hidden="true"></div>
+<button id="mobile-menu-btn" class="btn btn-primary fixed bottom-6 left-6 md:hidden" aria-label="Open menu">
+  <i class="fas fa-bars" aria-hidden="true"></i>
+  <span class="sr-only">Menu</span>
+</button>

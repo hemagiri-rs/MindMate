@@ -1,0 +1,225 @@
+#sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: var(--card-bg);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-logo {
+  height: 32px;
+  width: auto;
+}
+
+#sidebar-toggle {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: none;
+}
+
+#sidebar-toggle:hover {
+  color: var(--text-primary);
+}
+
+/* focus-visible for the sidebar toggle button */
+#sidebar-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 0.75rem 0.5rem;
+  overflow-y: auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  color: var(--text-muted);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  min-height: 40px; /* improve keyboard accessibility and hit targets */
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* aria-current support to mirror .active styles */
+.nav-item[aria-current="page"] {
+  background-color: #ecfdf5; /* emerald-50 */
+  color: var(--primary);
+  font-weight: 700;
+  border-left: 3px solid var(--primary);
+}
+
+.nav-item:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  background-color: #ecfdf5; /* emerald-50 */
+  color: var(--primary);
+  font-weight: 700;
+  border-left: 3px solid var(--primary);
+}
+
+.sidebar-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.user-details {
+  overflow: hidden;
+}
+
+.user-details h4 {
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-details p {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  min-height: 40px; /* improve keyboard accessibility and hit targets */
+}
+
+#logout-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#logout-btn:hover {
+  color: var(--error);
+}
+
+/* Collapsed State */
+#sidebar.collapsed {
+  width: 72px;
+}
+
+#sidebar.collapsed .sidebar-logo {
+  width: 32px;
+  height: 32px;
+}
+
+#sidebar.collapsed .nav-item span,
+#sidebar.collapsed .user-details,
+#sidebar.collapsed #logout-btn span {
+  display: none;
+}
+
+#sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+#sidebar.collapsed .nav-item i {
+  margin: 0;
+}
+
+#sidebar.collapsed .user-info {
+  justify-content: center;
+}
+
+#sidebar.collapsed .user-avatar {
+  margin: 0;
+}
+
+#sidebar.collapsed #logout-btn {
+  justify-content: center;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  #sidebar {
+    position: fixed;
+    left: -280px;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+  }
+
+  #sidebar.active {
+    left: 0;
+  }
+
+  #sidebar-toggle {
+    display: block;
+  }
+
+  .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+}
+
+/* reduce motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  #sidebar {
+    transition: none !important;
+  }
+  .nav-item {
+    transition: none !important;
+  }
+}

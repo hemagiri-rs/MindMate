@@ -1,0 +1,295 @@
+.dashboard-container {
+    padding: 2rem;
+}
+
+.section-header {
+    margin-bottom: 2rem;
+}
+
+.section-header h1 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg-secondary);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--bg-hover);
+}
+
+.action-btn i {
+    font-size: 1.2em;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.dashboard-card {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+}
+
+.dashboard-card h3 {
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+}
+
+/* Stats Card */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--border-radius);
+}
+
+.stat-item h4 {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.stat-item p {
+    margin: 0.5rem 0 0 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+/* Recent Activity Card */
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    margin-bottom: 0.75rem;
+}
+
+.activity-item:last-child {
+    margin-bottom: 0;
+}
+
+.activity-info h4 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.activity-info p {
+    margin: 0.25rem 0 0 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.activity-badge {
+    padding: 0.25rem 0.75rem;
+    background-color: var(--bg-accent);
+    color: var(--text-accent);
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+/* Data Seeding Card */
+#data-seeding {
+    text-align: center;
+}
+
+#data-seeding p {
+    margin: 1rem 0;
+    color: var(--text-secondary);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+}
+
+/* AI Assistant Button Styles */
+.action-btn-ai {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.action-btn-ai::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.action-btn-ai:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+}
+
+.action-btn-ai:hover::before {
+    left: 100%;
+}
+
+.action-btn-ai i {
+    animation: robotPulse 2s ease-in-out infinite;
+}
+
+@keyframes robotPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Responsive Design for Dashboard */
+@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 1rem;
+    }
+
+    .section-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .quick-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.875rem 1rem;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.875rem;
+    }
+
+    .dashboard-card {
+        padding: 1rem;
+    }
+
+    .card-header h3 {
+        font-size: 1rem;
+    }
+
+    .activity-item {
+        padding: 0.75rem;
+    }
+
+    #data-seeding {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-container {
+        padding: 0.875rem;
+    }
+
+    .section-header {
+        margin-bottom: 1.25rem;
+    }
+
+    .section-header h1 {
+        font-size: 1.375rem;
+    }
+
+    .quick-actions {
+        gap: 0.625rem;
+    }
+
+    .action-btn {
+        padding: 0.75rem 0.875rem;
+        font-size: 0.875rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .dashboard-card {
+        padding: 0.875rem;
+    }
+
+    .activity-item h4 {
+        font-size: 0.875rem;
+    }
+
+    .activity-item p {
+        font-size: 0.75rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quick-actions {
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+}
+
+@media (min-width: 1440px) {
+    .dashboard-container {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+}

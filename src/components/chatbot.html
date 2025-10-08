@@ -1,0 +1,109 @@
+<div class="chatbot-container flex flex-col h-screen max-w-full overflow-hidden bg-white">
+    <!-- Chatbot Header -->
+    <div class="chatbot-header flex justify-between items-center px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg border-b-2 border-white/10">
+        <div class="chatbot-header-left flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+            <div class="chatbot-logo w-10 h-10 sm:w-12 sm:h-12 min-w-[40px] sm:min-w-[48px] bg-white/15 rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl backdrop-blur-lg shadow-lg transition-transform hover:scale-105">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="chatbot-title flex-1 min-w-0">
+                <h2 class="text-base sm:text-lg md:text-xl font-semibold tracking-tight truncate">MindMate AI Assistant</h2>
+                <p class="chatbot-status flex items-center gap-2 mt-0.5 text-xs sm:text-sm opacity-95 font-medium">
+                    <span class="status-dot w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full shadow-glow"></span>
+                    <span class="hidden sm:inline">Online</span>
+                </p>
+            </div>
+        </div>
+        <div class="chatbot-header-right flex gap-2">
+            <button class="header-btn w-8 h-8 sm:w-10 sm:h-10 min-w-[32px] sm:min-w-[40px] border-0 bg-white/15 text-white rounded-lg transition-all hover:bg-white/25 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center backdrop-blur-lg" id="new-chat-btn" title="New Chat">
+                <i class="fas fa-plus text-sm sm:text-base"></i>
+            </button>
+            <button class="header-btn w-8 h-8 sm:w-10 sm:h-10 min-w-[32px] sm:min-w-[40px] border-0 bg-white/15 text-white rounded-lg transition-all hover:bg-white/25 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center backdrop-blur-lg" id="clear-chat-btn" title="Clear Chat History">
+                <i class="fas fa-trash text-sm sm:text-base"></i>
+            </button>
+            <button class="header-btn w-8 h-8 sm:w-10 sm:h-10 min-w-[32px] sm:min-w-[40px] border-0 bg-white/15 text-white rounded-lg transition-all hover:bg-white/25 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center backdrop-blur-lg" id="close-chat-btn" title="Close">
+                <i class="fas fa-times text-sm sm:text-base"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Chat Messages Area -->
+    <div class="chat-messages flex-1 overflow-y-auto overflow-x-hidden px-3 sm:px-4 md:px-6 py-4 sm:py-6 flex flex-col gap-4 sm:gap-5 bg-gray-50" id="chat-messages">
+        <div class="welcome-message flex gap-2.5 sm:gap-3.5 animate-fade-in max-w-full">
+            <div class="chatbot-avatar w-9 h-9 sm:w-11 sm:h-11 min-w-[36px] sm:min-w-[44px] bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center text-white text-lg sm:text-xl shadow-md">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content flex-1 min-w-0 bg-white px-4 sm:px-5 py-3 sm:py-4 rounded-2xl shadow-sm border border-gray-100 break-words">
+                <p class="text-sm sm:text-base mb-3 text-gray-800 leading-relaxed"><strong class="text-primary font-semibold">Hello! I'm your MindMate AI Assistant! 🤖</strong></p>
+                <p class="text-sm sm:text-base mb-3 text-gray-700">I can help you with:</p>
+                <ul class="list-disc list-inside text-sm sm:text-base space-y-2 text-gray-600 mb-3">
+                    <li>📝 Analyzing and managing your notes</li>
+                    <li>✅ Organizing and suggesting tasks</li>
+                    <li>💚 Tracking and analyzing your mood patterns</li>
+                    <li>🎵 Recommending songs based on your mood</li>
+                    <li>📊 Providing insights about your wellbeing</li>
+                </ul>
+                <p class="text-sm sm:text-base mb-3 text-gray-700">Try asking me things like:</p>
+                <div class="suggestion-chips flex flex-wrap gap-2">
+                    <button class="suggestion-chip px-3 py-2 bg-gradient-to-r from-primary to-primary-dark text-white border-0 rounded-full text-xs sm:text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 whitespace-nowrap" data-suggestion="Analyze my mood patterns">Analyze my mood</button>
+                    <button class="suggestion-chip px-3 py-2 bg-gradient-to-r from-primary to-primary-dark text-white border-0 rounded-full text-xs sm:text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 whitespace-nowrap" data-suggestion="What tasks should I focus on?">Task suggestions</button>
+                    <button class="suggestion-chip px-3 py-2 bg-gradient-to-r from-primary to-primary-dark text-white border-0 rounded-full text-xs sm:text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 whitespace-nowrap" data-suggestion="Recommend songs for my current mood">Song recommendations</button>
+                    <button class="suggestion-chip px-3 py-2 bg-gradient-to-r from-primary to-primary-dark text-white border-0 rounded-full text-xs sm:text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 whitespace-nowrap" data-suggestion="Summarize my recent notes">Summarize notes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div class="typing-indicator hidden flex gap-2.5 sm:gap-3.5 px-3 sm:px-4 md:px-6 animate-fade-in max-w-full" id="typing-indicator">
+        <div class="chatbot-avatar-small w-8 h-8 sm:w-10 sm:h-10 min-w-[32px] sm:min-w-[40px] bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center text-white text-base sm:text-lg shadow-md">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="typing-dots bg-white px-4 sm:px-5 py-3 rounded-2xl flex gap-1.5 shadow-sm border border-gray-100">
+            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-bounce"></span>
+            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.15s;"></span>
+            <span class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.3s;"></span>
+        </div>
+    </div>
+
+    <!-- Chat Input Area -->
+    <div class="chat-input-container px-3 sm:px-4 md:px-6 py-3 sm:py-4 pb-4 sm:pb-5 bg-white border-t border-gray-200 shadow-lg">
+        <div class="chat-input-wrapper flex items-end gap-2 px-3 py-2 bg-gray-50 border-2 border-gray-200 rounded-2xl transition-all focus-within:border-primary focus-within:bg-white focus-within:shadow-sm">
+            <button class="input-btn w-8 h-8 sm:w-9 sm:h-9 min-w-[32px] sm:min-w-[36px] border-0 bg-transparent text-gray-500 rounded-lg transition-all hover:bg-primary/10 hover:text-primary flex items-center justify-center text-base" id="attach-btn" title="Quick Actions">
+                <i class="fas fa-paperclip"></i>
+            </button>
+            <textarea 
+                id="chat-input" 
+                class="chat-input flex-1 border-0 bg-transparent text-sm sm:text-base text-gray-800 resize-none outline-none max-h-32 min-h-[22px] placeholder-gray-400 leading-relaxed" 
+                placeholder="Type your message here..."
+                rows="1"
+            ></textarea>
+            <button class="send-btn w-8 h-8 sm:w-9 sm:h-9 min-w-[32px] sm:min-w-[36px] bg-gradient-to-r from-primary to-primary-dark text-white border-0 rounded-lg transition-all hover:from-primary-dark hover:to-primary-dark hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center text-base" id="send-btn" title="Send Message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="input-hint hidden sm:flex items-center gap-2 mt-2 text-xs text-gray-500">
+            <i class="fas fa-lightbulb text-primary text-xs"></i>
+            <span>Press Enter to send, Shift+Enter for new line</span>
+        </div>
+    </div>
+
+    <!-- Quick Actions Menu -->
+    <div class="quick-actions-menu hidden absolute bottom-full left-3 right-3 sm:left-4 sm:right-4 md:left-6 md:right-6 mb-2 bg-white rounded-2xl shadow-xl p-2 border border-gray-200 animate-slide-up max-w-full" id="quick-actions-menu">
+        <button class="quick-action-item w-full flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 bg-transparent border-0 rounded-xl transition-all hover:bg-primary/10 hover:text-primary text-sm sm:text-base text-gray-800 font-medium" data-action="analyze-mood">
+            <i class="fas fa-chart-line w-4 sm:w-5 text-base sm:text-lg text-primary"></i>
+            <span>Analyze Mood</span>
+        </button>
+        <button class="quick-action-item w-full flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 bg-transparent border-0 rounded-xl transition-all hover:bg-primary/10 hover:text-primary text-sm sm:text-base text-gray-800 font-medium" data-action="task-suggestions">
+            <i class="fas fa-tasks w-4 sm:w-5 text-base sm:text-lg text-primary"></i>
+            <span>Task Suggestions</span>
+        </button>
+        <button class="quick-action-item w-full flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 bg-transparent border-0 rounded-xl transition-all hover:bg-primary/10 hover:text-primary text-sm sm:text-base text-gray-800 font-medium" data-action="song-recommendations">
+            <i class="fas fa-music w-4 sm:w-5 text-base sm:text-lg text-primary"></i>
+            <span>Song Recommendations</span>
+        </button>
+        <button class="quick-action-item w-full flex items-center gap-3 px-3 sm:px-4 py-2.5 sm:py-3 bg-transparent border-0 rounded-xl transition-all hover:bg-primary/10 hover:text-primary text-sm sm:text-base text-gray-800 font-medium" data-action="note-summary">
+            <i class="fas fa-file-alt w-4 sm:w-5 text-base sm:text-lg text-primary"></i>
+            <span>Summarize Notes</span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,189 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Notes</title>
+    <meta name="description" content="Fast, simple, beautiful notes." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     One font family for speed and clarity 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./notes-b7JOy.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#notes-grid">Skip to notes</a>
+
+    <header class="app-header" role="banner">
+      <div class="container header-inner">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">✦</span>
+          <h1 class="title text-balance">Notes</h1>
+        </div>
+        <div class="actions">
+          <div class="search">
+            <label class="sr-only" for="search-input">Search notes</label>
+            <input
+              id="search-input"
+              class="input"
+              type="search"
+              placeholder="Search notes… (/)"
+              autocomplete="off"
+            />
+          </div>
+          <button id="new-note-btn" class="btn primary" aria-haspopup="dialog">
+            New note
+          </button>
+        </div>
+      </div>
+      <div class="container filters">
+        <div class="filter-row">
+          <div class="fieldset">
+            <label for="category-filter">Category</label>
+            <select id="category-filter" class="select">
+              <option value="all">All</option>
+              <option value="PERSONAL">Personal</option>
+              <option value="WORK">Work</option>
+              <option value="HEALTH">Health</option>
+              <option value="IDEAS">Ideas</option>
+              <option value="GOALS">Goals</option>
+            </select>
+          </div>
+          <div class="fieldset">
+            <label for="sort-filter">Sort</label>
+            <select id="sort-filter" class="select">
+              <option value="updated">Recently Updated</option>
+              <option value="created">Recently Created</option>
+              <option value="alpha">Alphabetical</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="container" role="main">
+      <section
+        id="notes-grid"
+        class="notes-grid"
+        aria-live="polite"
+        aria-busy="false"
+      >
+         Cards rendered by JS 
+      </section>
+
+      <template id="note-card-template">
+        <article class="note-card" tabindex="0">
+          <div class="note-card-top">
+            <span class="badge" data-badge="category">Work</span>
+            <button class="icon-btn pin" title="Pin note" aria-pressed="false">
+              <span class="sr-only">Toggle pin</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 3l6 6-2 2 4 4-2 2-4-4-2 2-6-6 6-6z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+          <h3 class="note-title">Title</h3>
+          <p class="note-content">
+            Preview content that truncates gracefully over multiple lines.
+          </p>
+          <div class="note-meta">
+            <div class="tags" aria-label="Tags"></div>
+            <time class="time" title="">now</time>
+          </div>
+          <div class="note-actions">
+            <button class="btn subtle edit">Edit</button>
+            <button class="btn danger-outline delete">Delete</button>
+          </div>
+        </article>
+      </template>
+    </main>
+
+     Modal dialog 
+    <div
+      id="editor-overlay"
+      class="overlay"
+      role="presentation"
+      hidden
+    ></div>
+
+    <div
+      id="editor-dialog"
+      class="dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="editor-title"
+      aria-describedby="editor-desc"
+      hidden
+    >
+      <form id="note-form" class="dialog-inner" novalidate>
+        <header class="dialog-header">
+          <h2 id="editor-title" class="dialog-title">New note</h2>
+          <p id="editor-desc" class="dialog-desc">
+            Fill in details below. Press Esc to close.
+          </p>
+        </header>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="note-title">Title</label>
+            <input id="note-title" class="input" type="text" maxlength="120" required />
+          </div>
+
+          <div class="field">
+            <label for="note-category">Category</label>
+            <select id="note-category" class="select">
+              <option value="PERSONAL">Personal</option>
+              <option value="WORK">Work</option>
+              <option value="HEALTH">Health</option>
+              <option value="IDEAS">Ideas</option>
+              <option value="GOALS">Goals</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="note-tags">Tags (comma separated)</label>
+            <input
+              id="note-tags"
+              class="input"
+              type="text"
+              placeholder="e.g. ui, ux, research"
+            />
+          </div>
+
+          <div class="field field-col">
+            <label for="note-content">Content</label>
+            <textarea
+              id="note-content"
+              class="textarea"
+              rows="8"
+              placeholder="Write your note…"
+              required
+            ></textarea>
+          </div>
+
+          <div class="field checkbox-row">
+            <input id="note-pinned" type="checkbox" />
+            <label for="note-pinned">Pin this note</label>
+          </div>
+        </div>
+
+        <footer class="dialog-footer">
+          <button type="button" class="btn subtle" id="cancel-edit">Cancel</button>
+          <button type="submit" class="btn primary" id="save-note">Save note</button>
+        </footer>
+        <input type="hidden" id="note-id" />
+      </form>
+    </div>
+
+    <script src="./Notes-0a7LL.js" type="module"></script>
+  </body>
+</html>

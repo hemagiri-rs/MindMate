@@ -1,0 +1,88 @@
+﻿<div class="flex flex-col h-full overflow-hidden bg-gray-50">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-10 px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">Tasks </h1>
+                <p class="text-sm text-gray-500 mt-1">Manage your daily activities</p>
+            </div>
+            <button id="create-task-btn" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold rounded-xl hover:from-primary-dark hover:to-primary-dark transition-all active:scale-95 shadow-md">
+                <i class="fas fa-plus"></i>
+                <span>New Task</span>
+            </button>
+        </div>
+    </header>
+    <section class="px-4 sm:px-6 lg:px-8 py-3 bg-white border-b border-gray-200">
+        <div class="flex flex-col sm:flex-row gap-3">
+            <div class="flex-1 relative">
+                <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="tasks-search" placeholder="Search tasks..." class="w-full pl-11 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:border-primary focus:bg-white outline-none transition-all">
+            </div>
+            <select id="tasks-category-filter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:border-primary focus:bg-white outline-none transition-all cursor-pointer">
+                <option value="">All Categories</option>
+                <option value="Personal">Personal</option>
+                <option value="Work">Work</option>
+                <option value="Health">Health</option>
+                <option value="Shopping">Shopping</option>
+            </select>
+            <select id="tasks-priority-filter" class="px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:border-primary focus:bg-white outline-none transition-all cursor-pointer">
+                <option value="">All Priorities</option>
+                <option value="HIGH">High</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="LOW">Low</option>
+            </select>
+        </div>
+    </section>
+    <div id="tasks-grid" class="flex-1 overflow-y-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div id="tasks-container" class="space-y-3">
+        </div>
+    </div>
+</div>
+<div id="task-editor" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div class="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-primary to-primary-dark text-white">
+            <h3 id="task-editor-title" class="text-lg sm:text-xl font-bold">Create Task</h3>
+            <button id="close-task-editor" class="w-8 h-8 flex items-center justify-center hover:bg-white/20 rounded-lg transition-all">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+        <div class="p-6 max-h-[calc(100vh-200px)] overflow-y-auto">
+            <form id="task-form" class="space-y-4">
+                <div>
+                    <label for="task-title" class="block text-sm font-semibold text-gray-700 mb-2">Task Title *</label>
+                    <input type="text" id="task-title" required placeholder="Enter task title" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:border-primary focus:bg-white outline-none transition-all">
+                </div>
+                <div>
+                    <label for="task-category" class="block text-sm font-semibold text-gray-700 mb-2">Category *</label>
+                    <select id="task-category" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:border-primary focus:bg-white outline-none transition-all cursor-pointer">
+                        <option value="">Select Category</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="Health">Health</option>
+                        <option value="Shopping">Shopping</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="task-priority" class="block text-sm font-semibold text-gray-700 mb-2">Priority *</label>
+                    <select id="task-priority" required class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium focus:border-primary focus:bg-white outline-none transition-all cursor-pointer">
+                        <option value="">Select Priority</option>
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="task-due-date" class="block text-sm font-semibold text-gray-700 mb-2">Due Date</label>
+                    <input type="date" id="task-due-date" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:border-primary focus:bg-white outline-none transition-all">
+                </div>
+                <div>
+                    <label for="task-description" class="block text-sm font-semibold text-gray-700 mb-2">Description</label>
+                    <textarea id="task-description" placeholder="Task details..." rows="4" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:border-primary focus:bg-white outline-none transition-all resize-none"></textarea>
+                </div>
+                <div class="flex gap-3 pt-4">
+                    <button type="button" id="cancel-task-edit" class="flex-1 px-6 py-3 bg-gray-100 text-gray-700 font-semibold rounded-xl hover:bg-gray-200 transition-all active:scale-95">Cancel</button>
+                    <button type="submit" id="save-task" class="flex-1 px-6 py-3 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold rounded-xl hover:from-primary-dark hover:to-primary-dark transition-all active:scale-95 shadow-md"><i class="fas fa-save mr-2"></i>Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

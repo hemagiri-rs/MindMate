@@ -1,0 +1,374 @@
+/* 
+ * Responsive Layout Improvements
+ * Mobile-first responsive design for all components
+ */
+
+/* Base container adjustments */
+.dashboard,
+.notes-page,
+.tasks-page,
+.mood-page {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.main-content {
+    flex: 1;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Stats Grid Responsive */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.stat-header h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6b7280;
+    margin: 0;
+}
+
+.stat-header i {
+    color: #10b981;
+    font-size: 1.25rem;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1f2937;
+    line-height: 1;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .dashboard,
+    .notes-page,
+    .tasks-page,
+    .mood-page {
+        flex-direction: column;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-header h3 {
+        font-size: 0.75rem;
+    }
+
+    .stat-header i {
+        font-size: 1.125rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .main-header {
+        padding: 1rem;
+    }
+
+    .main-header h1 {
+        font-size: 1.375rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 0.875rem;
+    }
+
+    .stat-value {
+        font-size: 1.75rem;
+    }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large Screen Optimizations */
+@media (min-width: 1440px) {
+    .main-content {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Cards Grid Responsive */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Form Responsive */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0.875rem;
+    }
+}
+
+/* Modal Responsive */
+.modal-content {
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        max-height: 85vh;
+        border-radius: 1rem 1rem 0 0;
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Table Responsive */
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    width: 100%;
+    min-width: 600px;
+}
+
+@media (max-width: 768px) {
+    table {
+        font-size: 0.875rem;
+    }
+    
+    table th,
+    table td {
+        padding: 0.625rem 0.5rem;
+    }
+}
+
+/* Activity Items Responsive */
+.activity-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid #e5e7eb;
+    transition: all 0.2s;
+}
+
+.activity-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-color: #10b981;
+}
+
+.activity-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.activity-info h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.25rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.activity-info p {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+.activity-badge {
+    padding: 0.25rem 0.75rem;
+    background: #10b981;
+    color: white;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .activity-item {
+        padding: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .activity-info h4 {
+        font-size: 0.875rem;
+    }
+
+    .activity-info p {
+        font-size: 0.75rem;
+    }
+
+    .activity-badge {
+        font-size: 0.6875rem;
+        padding: 0.25rem 0.625rem;
+    }
+}
+
+/* Navigation Responsive */
+.nav-tabs {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+}
+
+.nav-tabs::-webkit-scrollbar {
+    height: 3px;
+}
+
+.nav-tabs::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 1.5px;
+}
+
+@media (max-width: 768px) {
+    .nav-tabs {
+        padding: 0.5rem 0;
+    }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+    button,
+    .btn,
+    a {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .action-btn {
+        padding: 0.875rem 1.25rem;
+    }
+    
+    input[type="checkbox"],
+    input[type="radio"] {
+        min-width: 20px;
+        min-height: 20px;
+    }
+}
+
+/* Landscape phone adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+    .main-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+
+    .stat-card {
+        padding: 0.75rem;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sidebar,
+    .nav-item,
+    .action-btn,
+    .header-btn,
+    button {
+        display: none !important;
+    }
+
+    .main-content {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .stats-grid,
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
